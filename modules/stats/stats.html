@@ -1,0 +1,24 @@
+<div ng-init="loadAds()">
+    <div dir="ltr" class="container-fluid">
+        <div class="row">
+            <section class="col-md-6">
+                <header style="text-align:right;"><h3>זמן הופעה כולל למודעה</h3></header>
+                <bargraph id="d3barTimePerAd" datajson="timePerAd"
+                                    xaxis-name = ""
+                                    xaxis-pos = "420"
+                                    yaxis-name = "(זמן (דקות"
+                                    yaxis-pos = "12"
+                          d3-format= ".0"></bargraph>
+            </section>
+            <section class="col-md-6">
+                <header style="text-align:right;"><h3>ניצול זמן מסך לפי ימים</h3></header>
+                <bargraph id="d3barTimeUtilPerDay" datajson="timeUtilizationPerDay"
+                            xaxis-name = "יום"
+                            xaxis-pos = "400"
+                            yaxis-name = "(%) ניצול זמן מסך"
+                            yaxis-pos = "6"
+                            d3-format= ".0%"></bargraph>
+            </section>
+        </div>
+    </div>
+</div>

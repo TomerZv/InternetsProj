@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="fonts/font.css" />
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+	<link rel="stylesheet" href="scripts/bootstrap.css">
+    <link rel="stylesheet" href="scripts/bootstrap-theme.css">
+    <link rel="stylesheet" href="scripts/bootstrap-rtl.css">
+    <link rel="stylesheet" href="scripts/bootstrap-timepicker.css">
+    
+</head>
+<body ng-app="adsApp" dir="rtl" ng-controller="appCtrl">
+    <header class="show-navbar-trigger" ng-mouseenter="isMouseOnNav = true" ng-mouseleave="isMouseOnNav = false">
+        <nav class="navbar navbar-default navbar-trans" 
+             ng-class="{ 'hidden-navbar' : whereami().indexOf('/display') >= 0 && hideNavbar }">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                      data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/#/">
+                 <canvas dir="ltr" id="logoCanvas" width="80" height="20">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
+              </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><a href="/#/management">ניהול</a></li>
+                <li><a href="/#/stats">סטטיסטיקה</a></li>
+              </ul>
+                <div class="form-group navbar-form navbar-left">
+                  <input type="number" ng-model="screenNumber" class="form-control" placeholder="מספר מסך">
+                  <a  class="btn btn-default" ng-href="/#/display/{{ screenNumber }}">עבור לתצוגה</a>
+                </div>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+    </header>
+    
+    <ng-view ng-mousemove="onMouseMove($event)"></ng-view>
+    <footer style="padding:15px;">
+        מערכת פרסום - כל הזכויות שמורות 2015 
+        <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
+        חן ודניאל
+    </footer>
+    
+    <script type="text/javascript">
+        var c = document.getElementById("logoCanvas");
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = "#3366FF";
+        ctx.beginPath();
+        ctx.arc(33,10, 8,0,2*Math.PI);
+        ctx.fill();
+        ctx.stroke();
+        ctx.font = "14px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText("Ads Center",0,15);
+    </script>
+    <!-- External Scripts -->
+    <script type="text/javascript" src="/scripts/prototype.js"></script> 
+    <script type="text/javascript" src="/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/scripts/angular.js"></script> 
+    <script type="text/javascript" src="/scripts/angular-route.js"></script> 
+    <script type="text/javascript" src="/scripts/socket.io-1.3.5.js"></script> 
+    <script type="text/javascript" src="/scripts/d3.v3.js"></script> 
+	<script type="text/javascript" src="/scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="/scripts/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/scripts/bootstrap-timepicker.js"></script>
+    <script type="text/javascript" src="/scripts/checklist-model.js"></script>
+    <script type="text/javascript" src="/scripts/angular-bootstrap-file-field.js"></script>
+    
+    <!-- Internal Scripts -->
+    <script type="text/javascript" src="/modules/stats/barGraph/angulard3bargraph.js"></script> 
+    <script type="text/javascript" src="/modules/stats/barGraph/barGraphProto.js"></script>   
+    
+    <!-- Display Module -->
+    <script type="text/javascript" src="/modules/display/displayModule.js"></script> 
+    <script type="text/javascript" src="/modules/display/displayController.js"></script> 
+    <script type="text/javascript" src="/modules/display/socket.js"></script> 
+    <script type="text/javascript" src="/modules/display/newsService.js"></script> 
+    
+    <!-- Management Module -->
+    <script type="text/javascript" src="/modules/management/managementModule.js"></script> 
+    <script type="text/javascript" src="/modules/management/manageAdsController.js"></script>    
+    <script type="text/javascript" src="/modules/management/adsService.js"></script> 
+	<script type="text/javascript" src="/modules/management/editAdController.js"></script> 
+
+    <!-- Statistics Module -->
+    <script type="text/javascript" src="/modules/stats/statsModule.js"></script> 
+    
+    <script type="text/javascript" src="app.js"></script> 
+</body>
+</html>
+

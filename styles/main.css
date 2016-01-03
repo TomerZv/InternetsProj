@@ -1,0 +1,34 @@
+.bar {
+    fill: blueviolet;
+}
+
+#result {
+   min-height: 200px;
+   margin: 20px;
+   padding: 0px 20px 20px 20px;
+   border-radius: 20px;
+   border: 1px solid black;
+   font-family: 'SansationLight';
+}
+
+.form-group {
+    margin-right: 20px;
+}
+
+p.error {
+    color:#FA787E;
+}
+
+.hidden-navbar { 
+    display: none;
+}
+
+.show-navbar-trigger:hover .hidden-navbar{
+    display : block;
+    opacity: 0;
+}
+
+.navbar-trans {
+    -webkit-transition: display linear 0.5s;
+    transition: display linear 0.5s;  
+}

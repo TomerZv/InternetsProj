@@ -1,0 +1,126 @@
+displayModule.controller('displayAdsCtrl', function($scope, $location, $routeParams, socket, $http, newsService) {
+    var ads = [];
+    
+    socket.on('connect', function (data) {
+        socket.emit('register:screen', { screenId: $routeParams.screenId });
+    });
+
+    socket.on('ad:added', function (data) {
+        console.log(data);
+        if (data.screenIds && data.screenIds.indexOf(parseInt($routeParams.screenId)) > -1) {
+            // Add only ads relevant to this specific screen
+            ads.push(data);
+        }
+    });
+    
+    socket.on('ad:updated', function (data) {
+        console.log(data);
+        // Find the updated ad in the screen's ads
+        var adToUpdate = findAd(data._id); 
+        // Find out if the updated ad need to be displayed on this screen
+        var displayOnThisScreen = data.screenIds.indexOf(parseInt($routeParams.screenId)) > -1;
+        
+        if (displayOnThisScreen && adToUpdate != -1) {
+             ads[adToUpdate] = data; // Perform an update of an existing ad
+        } else if (adToUpdate != -1) {
+            ads.splice(adToUpdate, 1); // Remove from screen's ads
+        } else if (displayOnThisScreen) {
+            ads.push(data); // Add to screen's ads
+        }
+    });
+    
+    var findAd = function(id) {
+        for (var i = 0, len = ads.length; i < len; i++) {
+            if (ads[i]._id === id)
+                return i; // Return as soon as the object is found
+        }
+        return -1; // The object was not found
+    }
+    
+    function scheduleAds() {
+        var duration = displayAds();
+        setTimeout(scheduleAds, duration * 1000);
+    }
+
+    $scope.loadAds = function() {
+        newsService.getTopNews(function(news) {
+            $scope.topNews = news;
+        });
+        
+        $http.get("/ads/?screenId=" + $routeParams.screenId).success(function(data) {
+          ads = data;
+          scheduleAds();
+        });
+    }
+
+    function displayAds() {
+        var chosenAd;
+
+        $.each(ads, function(index, ad) {
+            if (isInTimeFrame(ad.timeFrames)) {
+                
+                $( "#result" ).load(ad.templateUrl, function() {
+                    
+                    $( "#title" ).html(ad.title);
+                    
+                    $.each(ad.textLines, function(lineIndex, line) {
+                        $( "#line" + (lineIndex + 1)).html(line);
+                    });
+
+                    $.each(ad.images, function(imgIndex, img) {
+                        $( "#image" + (imgIndex + 1)).attr("src", img);
+                    });
+                    
+                    $.each(ad.videos, function(videoIndex, video) {
+                        $( "#video" + (videoIndex + 1)).attr("src", video);
+                    });
+                });
+
+                chosenAd = ad;
+                
+                var stat = { screenId: $routeParams.screenId, duration : chosenAd.duration,
+                                        shownAt : new Date(), adId : chosenAd._id, adTitle : chosenAd.title };
+                console.log(stat);
+                socket.emit('ad:shown', stat);
+                
+                // Move the chosen ad to the end of the ads array.
+                // Prevents showing the same ad twice in a row
+                ads.push(ads.splice(index, 1)[0]);
+                return false;
+            }
+        });
+        
+        if (chosenAd) {
+            return (chosenAd.duration);
+        } else {
+            $( "#result" ).html('<div style="text-align:center;">No ads to display :)</div>');
+            return 10; // Try to load ads again in 10 seconds
+        }
+    }
+
+    function isInTimeFrame(timeFrames) {
+        var isIn = false;
+        var today = new Date();
+        $.each(timeFrames, function(index, frame) {
+            if (today >= Date.parse(frame.startDate) && 
+                today <= Date.parse(frame.endDate) &&
+                today.getTime() > parseTime(frame.from).getTime() &&  
+                today.getTime() < parseTime(frame.to).getTime() && 
+                frame.days.indexOf(today.getDay() + 1) > -1) {
+                    isIn = true;
+            }
+        });
+
+        return isIn;
+    }
+
+    function parseTime(timeString) {    
+      if (timeString == '') return null;
+      var d = new Date();
+      var time = timeString.match(/(\d+)(:(\d\d))?\s*(p?)/i);
+      d.setHours( parseInt(time[1],10) + ( ( parseInt(time[1],10) < 12 && time[4] ) ? 12 : 0) );
+      d.setMinutes( parseInt(time[3],10) || 0 );
+      d.setSeconds(0, 0);
+      return d;
+    } 
+});

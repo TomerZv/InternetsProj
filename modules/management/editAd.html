@@ -1,0 +1,164 @@
+<div ng-init="init()" >
+    <form name="createOrEditAd" novalidate class="css-form">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                   <label>תבנית</label>
+                   <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-default" ng-click="initTemplate(1)"
+                              ng-class="{ active : selectedTemplae == 1 }">1</button>
+                      <button type="button" class="btn btn-default" ng-click="initTemplate(2)"
+                              ng-class="{ active : selectedTemplae == 2 }">2</button>
+                      <button type="button" class="btn btn-default" ng-click="initTemplate(3)"
+                              ng-class="{ active : selectedTemplae == 3 }">3</button>
+                   </div>
+               </div>
+               <div class="form-group" required>
+                    <label for="titleInput">כותרת</label>
+                    <input type="text" class="form-control" id="titleInput" 
+                           name="titleInput" ng-model="newAd.title" placeholder="כותרת" required>
+                    <div ng-show="createOrEditAd.$submitted || createOrEditAd.titleInput.$touched">
+                        <p ng-show="createOrEditAd.titleInput.$error.required" class="error">חובה למלא כותרת</p>
+                   </div>
+               </div>  
+               <div  class="form-group">
+                   <label>טקסט</label>
+                   <div ng-repeat="i in getNumberRows() track by $index">
+                        <input type="text" class="form-control"
+                               placeholder="{{' טקסט מספר ' + ($index + 1)}}"
+                               ng-model="newAd.textLines[$index]"> </br>
+                   </div>
+                </div>
+                <div  class="form-group">
+                   <label>תמונות</label>
+                    <div ng-repeat="i in getNumberImages() track by $index" style="margin:15px;">
+                        <file-field class="btn" ng-model="images[$index]"
+                                    ng-class="{'btn-success':uploadFile}"
+                                    preview="previewImage">תמונה מספר  {{($index + 1)}}</file-field>
+                        <img style="max-height:100px;" ng-src="{{previewImage}}">
+                    </div>
+                </div>
+                <div  class="form-group">
+                   <label>סרטונים</label>
+                    <div ng-repeat="i in getNumberVideos() track by $index" style="margin:15px;">
+                        <input type="text" class="form-control"
+                               placeholder="{{' לינק לוידאו מספר ' + ($index + 1)}}"
+                               ng-model="newAd.videos[$index]"> </br>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label>מסכים:</label>
+                    <label ng-repeat="i in screens" class="checkbox-inline"><input type="checkbox"  
+                            checklist-model="newAd.screenIds" checklist-value="i">{{i}}</label>
+                    <div ng-show="createOrEditAd.$submitted">
+                        <p ng-show="!newAd.screenIds || newAd.screenIds.length == 0" class="error">
+                            חובה לבחור לפחות מסך אחד
+                        </p>
+                   </div>
+               </div>
+               <div class="form-group">
+                    <label for="durationInput">משך זמן</label>
+                    <input type="number" id="durationInput" class="form-control" placeholder="שניות" 
+                           ng-model="newAd.duration" style="width:150px" name="durationInput" min="0" required>
+                   <div ng-show="createOrEditAd.$submitted || createOrEditAd.durationInput.$touched">
+                        <p ng-show="createOrEditAd.durationInput.$error.required" class="error">
+                            חובה למלא משך זמן
+                        </p>
+                        <p ng-show="createOrEditAd.durationInput.$error.number" class="error">
+                            הזן מספרים בלבד
+                        </p>
+                       <p ng-show="createOrEditAd.durationInput.$error.min" class="error">
+                           משך הזמן חייב להיות גדול מ-0</p>
+                   </div>
+               </div> 
+               <div class="form-group">
+                   <label>מסגרות זמנים</label>
+                   <div class="list-group">      
+                        <div class="list-group-item" ng-repeat="timeFrame in newAd.timeFrames" 
+                             ng-controller="timeFrameCtrl">
+                            <div class="navbar-left">
+                                <button type="button" class="btn btn-default btn-xs" 
+                                        ng-click="newAd.timeFrames.splice($index,1)"
+                                        ng-show="$index > 0">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <label> מתאריך</label>
+                                <input type="date" ng-model="timeFrame.startDate" 
+                                       name="{{ 'startDate' + $index }}" required>
+                                <label> עד תאריך</label>
+                                <input type="date" ng-model="timeFrame.endDate" 
+                                       name="{{ 'endDate' + $index }}" required>
+                                <div ng-show="{{ 'createOrEditAd.$submitted || 
+                                              createOrEditAd.startDate' + $index + '.$touched ||
+                                              createOrEditAd.endDate' + $index + '.$touched' }}">
+                                    <p ng-show="timeFrame.validateAfterDates" class="error">
+                                        תאריך סיום חייב להיות אחרי תאריך התחלה</p>
+                                    <p ng-show="{{ 'createOrEditAd.startDate' + $index + '.$error.required' }}"
+                                       class="error">חובה למלא תאריך התחלה</p>
+                                    <p ng-show="{{ 'createOrEditAd.endDate' + $index + '.$error.required' }}"
+                                       class="error">חובה למלא תאריך סיום</p>                                    
+                               </div>
+                            </div>
+                            <div class="form-group">
+                                <label> משעה</label>
+                                <input type="time" ng-model="timeFrame.from" name="{{ 'from' + $index }}" required />
+                                <label> עד שעה</label>
+                                <input type="time" ng-model="timeFrame.to" name="{{ 'to' + $index }}" required />
+                                <div ng-show="{{ 'createOrEditAd.$submitted || createOrEditAd.from' + $index +
+                                              '.$touched || createOrEditAd.to' + $index +'.$touched' }}">
+                                    <p ng-show="timeFrame.validateAfterTime" class="error">
+                                        זמן סיום חייב להיות אחרי זמן התחלה</p>
+                                    <p ng-show="{{ 'createOrEditAd.from' + $index + '.$error.required' }}"
+                                       class="error">חובה למלא זמן התחלה</p>
+                                    <p ng-show="{{ 'createOrEditAd.to' + $index + '.$error.required' }}" 
+                                       class="error">חובה למלא זמן סיום</p>                                    
+                               </div>
+                            </div>
+                            <div class="form-group">
+                                <label>בימים:</label>
+                                 <label class="checkbox-inline">
+                                     <input type="checkbox" checklist-model="timeFrame.days"
+                                                 checklist-value="1">ראשון</label>
+                                 <label class="checkbox-inline">
+                                     <input type="checkbox" checklist-model="timeFrame.days"
+                                                 checklist-value="2">שני</label>
+                                 <label class="checkbox-inline">
+                                     <input type="checkbox" checklist-model="timeFrame.days"
+                                                 checklist-value="3">שלישי</label>
+                                 <label class="checkbox-inline">
+                                     <input type="checkbox" checklist-model="timeFrame.days"
+                                                 checklist-value="4">רביעי</label>
+                                 <label class="checkbox-inline">
+                                     <input type="checkbox" checklist-model="timeFrame.days"
+                                                 checklist-value="5">חמישי</label>
+                                 <label class="checkbox-inline">
+                                     <input type="checkbox" checklist-model="timeFrame.days"
+                                                 checklist-value="6">שישי</label>
+                                 <label class="checkbox-inline">
+                                     <input type="checkbox" checklist-model="timeFrame.days" 
+                                            checklist-value="7">שבת</label>
+                                <div ng-show="createOrEditAd.$submitted">
+                                    <p ng-show="!timeFrame.days || 
+                                                timeFrame.days.length == 0" class="error">
+                                        חובה לבחור לפחות יום אחד
+                                    </p>
+                               </div>                                
+                            </div>
+                       </div>
+                       <div class="list-group-item">
+                            <button type="button" class="btn btn-default btn-md" ng-click="addTimeFrame()">
+                            הוסף מסגרת זמנים
+                            </button>
+                       </div>
+                   </div>
+               </div>
+                <input type="submit" class="btn btn-primary" ng-click="save()" value="שמור" />
+            </div>
+        </div>
+    </form>
+
+</div>
