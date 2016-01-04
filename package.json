@@ -4,10 +4,10 @@
   "description": "To run this exercise just run \"RunThis.bat\" in ADMINISTRATOR mode \r and than you can change the screen number at the url (range 1 - 3)",
   "main": "server.js",
   "dependencies": {
-    "body-parser": "^1.13.2",
+    "body-parser": "^1.14.2",
     "express": "^4.13.3",
-    "mongodb": "^2.0.28",
-    "socket.io": "^1.3.6"
+    "mongodb": "^2.1.3",
+    "socket.io": "^1.3.7"
   },
   "devDependencies": {},
   "scripts": {
