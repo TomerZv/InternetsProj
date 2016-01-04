@@ -159,7 +159,7 @@ var removeDocuments = function(db, callback) {
   // Get the documents collection
   var collection = db.collection('ads');
   // Insert some documents
-  collection.remove({}, function(err, result) {
+  collection.removeMany({}, function(err, result) {
     assert.equal(err, null);
     console.log("Delete all ads");
     callback(result);
@@ -170,7 +170,7 @@ var removeStats = function(db, callback) {
   // Get the documents collection
   var collection = db.collection('stats');
   // Insert some documents
-  collection.remove({}, function(err, result) {
+  collection.removeMany({}, function(err, result) {
     assert.equal(err, null);
     console.log("Delete all statistics");
     callback(result);
