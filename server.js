@@ -202,6 +202,7 @@ io.sockets.on('connection', function (socket) {
         });
     });
 
+
     socket.on('disconnect', function(){
         console.log("Screen UnRegistered: " + socket.screenId);
         // remove the screenId from global screens list
