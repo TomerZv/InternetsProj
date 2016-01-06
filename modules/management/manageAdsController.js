@@ -1,4 +1,4 @@
-managementModule.controller('manageAdsCtrl', function($scope, $location, adsService, $window) {
+angular.module('management').controller('manageAdsCtrl', function($scope, $location, adsService) {
     
     $scope.ads = [];
     $scope.query = {
