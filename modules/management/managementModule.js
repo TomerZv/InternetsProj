@@ -9,7 +9,7 @@ angular.module('management').controller('mainCtrl', function($scope){
 });
 
 angular.module('management').filter('adFilter', function() {
-      return function(input, uppercase) {
+      return function(ads, params) {
         input = input || '';
         var out = "";
         for (var i = 0; i < input.length; i++) {

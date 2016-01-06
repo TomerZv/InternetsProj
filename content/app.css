@@ -1,0 +1,88 @@
+.bar {
+    fill: blueviolet;
+}
+
+#result {
+   min-height: 200px;
+   margin: 20px;
+   padding: 0px 20px 20px 20px;
+   border-radius: 20px;
+   border: 1px solid black;
+   font-family: 'SansationLight';
+}
+
+.form-group {
+    margin-right: 20px;
+}
+
+p.error {
+    color:#FA787E;
+}
+
+.hidden-navbar { 
+    display: none;
+}
+
+.show-navbar-trigger:hover .hidden-navbar{
+    display : block;
+    opacity: 0;
+}
+
+.navbar-trans {
+    -webkit-transition: display linear 0.5s;
+    transition: display linear 0.5s;  
+}
+
+ul.nav.navbar-nav li a.menuItem{
+    color: white
+}
+
+ul.nav.navbar-nav li a.menuItem:hover{
+    background-color:#aac4d6
+}
+
+.management-menu{
+    background-color: #a7bbcc;
+    margin-left:0px;
+    padding: 5px 5px 5px 5px;
+    border-radius:5px;
+}
+
+.management-menu-item{
+    border-width: 1px;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    border-color: rgba(92, 102, 118, 0.45);
+    border-style: solid;
+    margin:5px 5px 5px 5px;
+    color:white;
+    cursor: pointer;
+    font-style: italic;
+}
+
+.management-menu-item:hover{
+    background-color: #67808b
+}
+
+.management-menu-item-selected{
+    background-color:#51636e;
+}
+
+div.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+div.form-group{
+    border-width:1px;
+    border-radius:5px;
+}
+
+#filter{
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #a7bbcc;
+    border-color: #778899
+}
