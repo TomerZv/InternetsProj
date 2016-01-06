@@ -1,4 +1,4 @@
-managementModule.controller('timeFrameCtrl', function($scope) {
+angular.module('management').controller('timeFrameCtrl', function($scope) {
         
     $scope.$watch('timeFrame.endDate', function (value) {
          
@@ -37,7 +37,7 @@ managementModule.controller('timeFrameCtrl', function($scope) {
      }); 
 });
 
-managementModule.controller('editAdCtrl', function($scope, $location, adsService, $window, $routeParams) {
+angular.module('management').controller('editAdCtrl', function($scope, $location, adsService, $window, $routeParams) {
     $scope.templates = [];
     $scope.screens = [];
     $scope.images = [];
@@ -153,7 +153,7 @@ managementModule.controller('editAdCtrl', function($scope, $location, adsService
         }
 
         return newDate;
-    }
+    };
     
     var setTimeFormat = function (time){
         
@@ -170,7 +170,7 @@ managementModule.controller('editAdCtrl', function($scope, $location, adsService
         }
 
         return newTime;
-    }
+    };
     
      var setTimeFormat24 = function (time){
         
@@ -182,7 +182,7 @@ managementModule.controller('editAdCtrl', function($scope, $location, adsService
             time = time.replace(hours, (hours + 12));
         }
         return time.replace(/( AM| PM)/, '');
-     }
+     };
 
     
     $scope.addTimeFrame = function() {

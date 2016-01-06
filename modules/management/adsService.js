@@ -1,4 +1,4 @@
-managementModule.factory('adsService', function ($http) {
+angular.module('management').factory('adsService', function ($http) {
 
     var adsService = {};
     
