@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="fonts/font.css" />
-	<link rel="stylesheet" href="content/bootstrap.css">
-    <link rel="stylesheet" href="content/bootstrap-theme.css">
-    <link rel="stylesheet" href="content/bootstrap-timepicker.css">
-    <link rel="stylesheet" type="text/css" href="content/app.css">
+    <link rel="stylesheet" type="text/css" href="Client/fonts/font.css" />
+	<link rel="stylesheet" type="text/css" href="Client/content/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="Client/content/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="Client/content/bootstrap-timepicker.css">
+    <link rel="stylesheet" type="text/css" href="Client/content/isteven-multi-select.css">
+    <link rel="stylesheet" type="text/css" href="Client/content/app.css">
 
     <!-- External Scripts -->
-    <script type="text/javascript" src="/scripts/prototype.js"></script>
-    <script type="text/javascript" src="/scripts/jquery.js"></script>
-    <script type="text/javascript" src="/scripts/angular.js"></script>
-    <script type="text/javascript" src="/scripts/angular-route.js"></script>
-    <script type="text/javascript" src="/scripts/socket.io-1.3.5.js"></script>
-    <script type="text/javascript" src="/scripts/d3.v3.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap-timepicker.js"></script>
-    <script type="text/javascript" src="/scripts/checklist-model.js"></script>
-    <script type="text/javascript" src="/scripts/angular-bootstrap-file-field.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/prototype.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/jquery.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/angular.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/angular-route.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/socket.io-1.3.5.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/d3.v3.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/bootstrap.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/bootstrap-timepicker.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/checklist-model.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/angular-bootstrap-file-field.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script type="text/javascript" src="/Client/scripts/External/isteven-multi-select.js"></script>
 
     <!-- Internal Scripts -->
-    <script type="text/javascript" src="/modules/stats/barGraph/angulard3bargraph.js"></script>
-    <script type="text/javascript" src="/modules/stats/barGraph/barGraphProto.js"></script>
+    <script type="text/javascript" src="/Client/modules/stats/barGraph/angulard3bargraph.js"></script>
+    <script type="text/javascript" src="/Client/modules/stats/barGraph/barGraphProto.js"></script>
 
     <!-- Display Module -->
-    <script type="text/javascript" src="/modules/display/displayModule.js"></script>
-    <script type="text/javascript" src="/modules/display/displayController.js"></script>
-    <script type="text/javascript" src="/modules/display/socket.js"></script>
-    <script type="text/javascript" src="/modules/display/newsService.js"></script>
+    <script type="text/javascript" src="/Client/modules/display/displayModule.js"></script>
+    <script type="text/javascript" src="/Client/modules/display/displayController.js"></script>
+    <script type="text/javascript" src="/Client/modules/display/socket.js"></script>
+    <script type="text/javascript" src="/Client/services/newsService.js"></script>
 
     <!-- Management Module -->
-    <script type="text/javascript" src="/modules/management/managementModule.js"></script>
-    <script type="text/javascript" src="/modules/management/manageAdsController.js"></script>
-    <script type="text/javascript" src="/modules/management/adsService.js"></script>
-    <script type="text/javascript" src="/modules/management/editAdController.js"></script>
+    <script type="text/javascript" src="/Client/modules/management/managementModule.js"></script>
+    <script type="text/javascript" src="/Client/modules/management/manageAdsController.js"></script>
+    <script type="text/javascript" src="/Client/services/adsService.js"></script>
+    <script type="text/javascript" src="/Client/modules/management/editAdController.js"></script>
 
     <!-- Statistics Module -->
-    <script type="text/javascript" src="/modules/stats/statsModule.js"></script>
+    <script type="text/javascript" src="/Client/modules/stats/statsModule.js"></script>
 
-    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="Client/app.js"></script>
 
     <!-- Directives -->
-    <script type="text/javascript" src="/directives/menu/menu.js"></script>
-    <script type="text/javascript" src="/directives/screenSelector/screenSelector.js"></script>
-    <script type="text/javascript" src="/directives/managementMenu/menu.js"></script>
-    <script type="text/javascript" src="/directives/managementMenu/menuItem.js"></script>
-    <script type="text/javascript" src="/directives/filterAds/filter.js"></script>
-
+    <script type="text/javascript" src="/Client/directives/menu/menu.js"></script>
+    <script type="text/javascript" src="/Client/directives/screenSelector/screenSelector.js"></script>
+    <script type="text/javascript" src="/Client/directives/managementMenu/menu.js"></script>
+    <script type="text/javascript" src="/Client/directives/managementMenu/menuItem.js"></script>
+    <script type="text/javascript" src="/Client/directives/filterAds/filter.js"></script>
+    <script type="text/javascript" src="/Client/directives/ad/ad.js"></script>
+    <script type="text/javascript" src="/Client/directives/adContainer/adContainer.js"></script>
+    <script type="text/javascript" src="/Client/services/modalService.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var c = document.getElementById("logoCanvas");

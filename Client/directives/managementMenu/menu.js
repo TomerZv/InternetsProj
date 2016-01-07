@@ -1,7 +1,7 @@
 angular.module('management').directive('managementMenu', function() {
     return {
         restrict: 'E',
-        templateUrl: 'directives/managementMenu/menu.html',
+        templateUrl: '/Client/directives/managementMenu/menu.html',
         scope:{
             selected: '='
         },
