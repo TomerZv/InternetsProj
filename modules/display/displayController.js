@@ -1,4 +1,4 @@
-displayModule.controller('displayAdsCtrl', function($scope, $location, $routeParams, socket, $http, newsService) {
+displayModule.controller('displayAdsCtrl', function($scope, $location, $routeParams, socket, $http) {
     var ads = [];
     
     socket.on('connect', function (data) {
@@ -43,10 +43,6 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
     }
 
     $scope.loadAds = function() {
-        newsService.getTopNews(function(news) {
-            $scope.topNews = news;
-        });
-        
         $http.get("/ads/?screenId=" + $routeParams.screenId).success(function(data) {
           ads = data;
           scheduleAds();
@@ -62,18 +58,33 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
                 $( "#result" ).load(ad.templateUrl, function() {
                     
                     $( "#title" ).html(ad.title);
-                    
-                    $.each(ad.textLines, function(lineIndex, line) {
-                        $( "#line" + (lineIndex + 1)).html(line);
+                    $( "#location" ).html('(' + ad.location + ')');
+
+                    if (ad.textLines) {
+                        $.each(ad.textLines, function (lineIndex, line) {
+                            $("#line" + (lineIndex + 1)).html(line);
+                        });
+                    }
+
+                    if (ad.images) {
+                        $.each(ad.images, function (imgIndex, img) {
+                            $("#image" + (imgIndex + 1)).attr("src", img);
+                        });
+                    }
+
+                    if (ad.videos) {
+                        $.each(ad.videos, function (videoIndex, video) {
+                            $("#video" + (videoIndex + 1)).attr("src", video);
+                        });
+                    }
+
+                    var a = 5;
+
+                    var url = 'http://api.openweathermap.org/data/2.5/find?q=' + ad.location + '&units=metric&appid=2de143494c0b295cca9337e1e96b00e0';
+                    $.get(url, function(data, status){
+                        $("#temperature").html(Math.round(data.list[0].main.temp));
                     });
 
-                    $.each(ad.images, function(imgIndex, img) {
-                        $( "#image" + (imgIndex + 1)).attr("src", img);
-                    });
-                    
-                    $.each(ad.videos, function(videoIndex, video) {
-                        $( "#video" + (videoIndex + 1)).attr("src", video);
-                    });
                 });
 
                 chosenAd = ad;

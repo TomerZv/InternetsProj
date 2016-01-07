@@ -2,7 +2,7 @@
       "title" : "Fox Kids",
       "textLines" : ['We have nice clothes', 'buy it as soon as possible'
                    , 'one plus one free', 'big sale today', 'fox kids is the best'],
-      "images" : ['./images/cats.jpg', './images/animal.jpg'],
+      "images" : [],
       "templateUrl" : './templateA.html',
       "duration" :2600,
       "timeFrames" : [
@@ -21,7 +21,10 @@
               "to" : "8:00 PM"
           }
       ],
-      "screenIds" : [1,3]
+      "screenIds" : [1,3],
+      "location" : "Jerusalem",
+      "latitude" : 31.769039,
+      "longitude" : 35.216331
    },{
      "title" : "Castro man2",
       "textLines" : ['buy only from us', 'castro is the best',
@@ -40,7 +43,10 @@
               "to" : "4:00 PM"
           }
       ],
-      "screenIds" : [1,3]
+      "screenIds" : [1,3],
+      "location" : "Tel-Aviv",
+      "latitude" : 31.769039,
+      "longitude" : 35.216331
   }, {
      "title" : "Cellio",
      "textLines" : ['welcome to cellio'],
@@ -73,7 +79,10 @@
               "to" : "7:00 PM"
           }
       ],
-       "screenIds": [1]
+       "screenIds": [1],
+       "location" : "Haifa",
+       "latitude" : 32.815559,
+       "longitude" : 34.98917
   }, {
      "title" : "bilaboong",
       "textLines" : ['dont buy here', 'we are expensive',
@@ -90,5 +99,8 @@
               "to" : "11:00 PM"
           }
       ],
-      "screenIds": [3]
+      "screenIds": [3],
+      "location" : "Eilat",
+      "latitude" : 29.55805,
+      "longitude" : 34.948212
   }]

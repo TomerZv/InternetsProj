@@ -1,4 +1,4 @@
-<header><h2 id="title" style="text-shadow: 1px 1px #6600FF;"></h2></header>
+<header><h2 id="title" style="text-shadow: 1px 1px #6600FF;"></h2><h5 id="location"></h5></header>
 <div  style="-webkit-column-count: 2; /* Chrome, Safari, Opera */
     -moz-column-count: 2; /* Firefox */
     column-count: 2;">
@@ -13,8 +13,17 @@
         <img id="image2" />
     </section>
 </div>
+<div>
+    <section>
+        <label>Current temperature: <span class="label label-default" id="temperature"></span> celsius degrees</label>
+    </section>
+</div>
 <style>
   body {background-color:white}
   h1   {color:blue}
+  h2 {display: inline-block}
+  h5 {display: inline; margin-left: 3px;}
   p    {color:black}
+  label { margin-top: 20px}
+
 </style>

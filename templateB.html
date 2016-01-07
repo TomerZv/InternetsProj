@@ -1,4 +1,4 @@
-<header><h2 id="title"></h2></header>
+<header><h2 id="title"></h2><h5 id="location"></h5></header>
 <section>
     <p id="line1"></p>
     <p id="line2"></p>
@@ -12,9 +12,17 @@
     <img id="image1" />
     <img id="image2" />
 </section>
-
+<div id="tempdiv">
+    <section>
+        <label>Current temperature: <span class="label label-default" id="temperature"></span> celsius degrees</label>
+    </section>
+</div>
 <style>
   body {background-color:blue}
   h1   {color:red}
+  h2 {display: inline-block}
+  h5 {display: inline; margin-left: 3px;}
   p    {color:yellow}
+  div  {padding-top: 5px}
+  label { margin-top: 20px}
 </style>
