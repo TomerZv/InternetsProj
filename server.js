@@ -86,31 +86,7 @@ app.get("/timeUtilizationPerDay", function(req, res){
 app.get("/ads/", function(req, res){
     mongoDB.connect(mongoUrl, function(err, db) {
         assert.equal(null, err);
-
-        var query = {};
-
-        var screenId = req.query.screenId;
-        if (screenId) {
-            var screens = req.query.screenId.split(',').map(function (x) {
-                return parseInt(x, 10);
-            });
-            query = { screenIds : { $in : screens }};
-        }
-
-        var days = req.query.days;
-        if (days) {
-            var daysParsed = req.query.days.split(',').map(function (x) {
-                return parseInt(x, 10);
-            });
-            query['timeFrames.days'] = { $in : daysParsed };
-        }
-
-        var duration = parseInt(req.query.duration);
-        if (duration) {
-            query['duration'] = { $gte : duration };
-        }
-
-        db.collection('ads').find(query).toArray(function(err, docs) {
+        db.collection('ads').find({}).toArray(function(err, docs) {
             assert.equal(null, err);
             res.json(docs);
             db.close();

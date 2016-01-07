@@ -4,15 +4,6 @@
     </span>
     <span class="col-md-10" style="padding-left:0">
         <div ng-if="isTabSelected('New Ad')">New</div>
-        <div ng-controller="manageAdsCtrl" ng-init="loadAds()" ng-if="isTabSelected('Manage Ads')">
-            <span class="col-md-10">
-                <header class="page-header" style="margin-bottom:5px;margin-top:10px">
-                    <form class="form-inline">
-                        <filter-ads filters="filters"></filter-ads>
-                    </form>
-                </header>
-                <ad-container></ad-container>
-            </span>
-        </div>
+        <manage-ads ng-if="isTabSelected('Manage Ads')"></manage-ads>
     </span>
 </div>

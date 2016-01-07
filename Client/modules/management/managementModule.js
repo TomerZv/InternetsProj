@@ -1,7 +1,7 @@
 angular.module('management', ['ngRoute', 'checklist-model', 'bootstrap.fileField', 'ui.bootstrap']);
 
 angular.module('management').controller('mainCtrl', function($scope){
-  $scope.selectedTab = "New Ad";
+  $scope.selectedTab = "Manage Ads";
 
   $scope.isTabSelected = function(tabName){
     return $scope.selectedTab === tabName;
