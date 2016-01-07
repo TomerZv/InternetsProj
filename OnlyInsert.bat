@@ -1,0 +1,1 @@
+start "import rows" /I cmd /K start "import rows" /I cmd /K "C:\Program Files\MongoDB\Server\3.2\bin\mongoimport.exe" --db test --collection ads --drop --jsonArray --file %CD%\data.json

@@ -94,7 +94,7 @@ angular.module('management').config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
     when('/management', {
-      templateUrl: '/Client/modules/management/management.html',
+      templateUrl: '/Client/views/management.html',
       //controller: 'manageAdsCtrl'
       controller: 'mainCtrl'
     }).
