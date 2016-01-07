@@ -83,6 +83,29 @@ div.form-group{
     border-style: solid;
     padding: 5px;
     border-radius: 5px;
-    background-color: #a7bbcc;
+    background-color: #cdccd0;
     border-color: #778899
+}
+
+#adContainer{
+    padding: 10px 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: rgba(205, 204, 208, 0.65);
+    border-color: #778899;
+    overflow-y: scroll;
+    max-height: 60vh;
+}
+
+.field-description{
+    font-weight: bold;
+    color: #787878;
+}
+
+.notLast{
+    border-width:0px 0px 1px 0px;
+    margin:10px 0px 10px 0px;
+    padding-bottom:10px;
+    border-style:solid;
 }

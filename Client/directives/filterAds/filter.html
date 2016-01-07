@@ -1,0 +1,62 @@
+<div>
+    <label style="font-size: 16px;">Search advertisements</label>
+    <div id="filter">
+        <div class="row">
+        <span class="col-md-4">
+            <div class="row"><label>Days:</label></div>
+            <isteven-multi-select input-model="daysInput" output-model="filters.days" button-label="name" item-label="name" tick-property="selected" output-properties="value">
+            </isteven-multi-select>
+            <!--<div class="row form-group">
+                <div class="row">
+                    <div class="checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" checklist-model="filters.days" checklist-value="1" /> Sunday
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" checklist-model="filters.days" checklist-value="2" /> Monday
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" checklist-model="filters.days" checklist-value="3" /> Tuesday
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" checklist-model="filters.days" checklist-value="4" /> Wednesday
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" checklist-model="filters.days" checklist-value="5" /> Thursday
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" checklist-model="filters.days" checklist-value="6" /> Friday
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label class="checkbox">
+                            <input type="checkbox" checklist-model="filters.days" checklist-value="7" /> Saturday
+                        </label>
+                    </div></div></div>-->
+        </span>
+        <span class="col-md-4">
+            <div class="row"><label>Screen IDs:</label></div>
+            <isteven-multi-select input-model="screenInput" output-model="filters.screenIds" button-label="name" item-label="name" tick-property="selected">
+            </isteven-multi-select>
+        </span>
+        <span class="col-md-4">
+            <div class="row"><label>Text:</label></div>
+            <div class="row">
+                <input type="text" ng-model="filters.text"  class="form-control" placeholder="Filter text..."/>
+            </div>
+        </span>
+        </div>
+    </div>
+</div>
