@@ -1,0 +1,52 @@
+<ng-form name="frameForm">
+    <div class="row">
+        <div id="deleteFrame" class="row" style="padding-bottom:5px">
+            <button type="button" class="btn btn-default btn-xs" ng-click="deleteFrameFunction()(index)" ng-show="index > 0">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+        <div id="frameDates" class="form-group row">
+            <span class="col-md-6" style="padding:0px 5px 0px 0px">
+                <span ng-if="(frameForm.startDate.$error.required || !isDateValid(frame.modelStartDate))"
+                      class="error glyphicon glyphicon glyphicon-asterisk"
+                      style="float:left;padding-right:5px;color:red"></span>
+                <label>From </label>
+                <input type="date" ng-model="frame.modelStartDate" name="startDate" class="form-control" required>
+            </span>
+            <span class="col-md-6" style="padding:0">
+                <span ng-if="(frameForm.endDate.$error.required || !isDateValid(frame.modelEndDate))"
+                      class="error glyphicon glyphicon glyphicon-asterisk"
+                      style="float:left;padding-right:5px;color:red"></span>
+                <label>To</label>
+                <input type="date" ng-model="frame.modelEndDate" name="endDate" class="form-control" required>
+            </span>
+            <div ng-if="frameForm.$submitted || frameForm.startDate.$touched || frameForm.endDate.$touched">
+                <p ng-if="frame.modelEndDate < frame.modelStartDate" class="error">Start date must come before end date.</p>
+            </div>
+        </div>
+        <div id="frameHours" class="form-group row" style="padding-top:5px">
+            <span class="col-md-6" style="padding:0px 5px 0px 0px">
+                <span ng-if="(!isDateValid(frame.modelFrom))" class="error glyphicon glyphicon glyphicon-asterisk" style="float:left;padding-right:5px;color:red"></span>
+                <label>Start time</label>
+                <time-input time-mode="24" model="frame.modelFrom"></time-input>
+            </span>
+            <span class="col-md-6" style="padding:0">
+                <span ng-if="(!isDateValid(frame.modelTo))" class="error glyphicon glyphicon glyphicon-asterisk" style="float:left;padding-right:5px;color:red"></span>
+                <label>End time</label>
+                <time-input time-mode="24" model="frame.modelTo"></time-input>
+            </span>
+            <div ng-if="frame.modelTo < frame.modelFrom">
+                <p class="error">
+                    Start time has to come before end time.
+                </p>
+            </div>
+        </div>
+        <div id="frameDays" class="form-group">
+            <span ng-if="!frame.outputDays || frame.outputDays.length == 0" class="error glyphicon glyphicon glyphicon-asterisk" style="float:left;padding-right:5px;color:red"></span>
+            <label>Days</label>
+            <div class="row">
+                <isteven-multi-select class="form-input" input-model="daysInput" output-model="frame.outputDays" button-label="name" item-label="name" tick-property="selected" output-properties="value"></isteven-multi-select>
+            </div>
+        </div>
+    </div>
+</ng-form>

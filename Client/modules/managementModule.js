@@ -95,11 +95,10 @@ angular.module('management').config(['$routeProvider',
     $routeProvider.
     when('/management', {
       templateUrl: '/Client/views/management.html',
-      //controller: 'manageAdsCtrl'
       controller: 'mainCtrl'
     }).
     when('/editAd/:adId?', {
-      templateUrl: '/Client/modules/management/editAd.html',
+      templateUrl: '/Client/views/editAd.html',
       controller: 'editAdCtrl'
     });
   }]);

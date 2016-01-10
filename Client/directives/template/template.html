@@ -1,0 +1,36 @@
+<ng-form name="templateForm">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <span ng-if="(templateForm.$submitted || templateForm.title.$touched) && templateForm.title.$error.required"
+              class="error glyphicon glyphicon glyphicon-asterisk"
+              style="float:left;padding-right:5px;color:red"></span>
+        <input type="text" class="form-control" id="title"
+               name="title" ng-model="ad.title" placeholder="The title of the ad" required>
+    </div>
+    <div class="form-group" ng-if="templates[ad.templateId - 1].textRows != 0">
+        <label>Text</label>
+        <div ng-repeat="i in getTextNumber() track by $index">
+            <input type="text" class="form-control"
+                   placeholder="{{ 'Line number ' + ($index + 1)}}"
+                   ng-model="ad.textLines[$index]"> </br>
+        </div>
+    </div>
+    <div class="form-group" ng-if="templates[ad.templateId - 1].images != 0">
+        <label>Images</label>
+        <div ng-repeat="i in getImagesNumber() track by $index">
+            <file-field class="btn" ng-model="images[$index]"
+                        ng-class="{'btn-success':uploadFile}"
+                        preview="previewImage">Image number {{($index + 1)}}
+            </file-field>
+            <img style="max-height:100px;" ng-src="{{previewImage}}">
+        </div>
+    </div>
+    <div class="form-group" ng-if="templates[ad.templateId - 1].videos != 0">
+        <label>Videos</label>
+        <div ng-repeat="i in getVideosNumber() track by $index">
+            <input type="text" class="form-control"
+                   placeholder="{{'Video link number ' + ($index + 1)}}"
+                   ng-model="ad.videos[$index]"> </br>
+        </div>
+    </div>
+</ng-form>

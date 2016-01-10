@@ -4,6 +4,6 @@ statsModule.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/stats', {
-        templateUrl: '/Client/modules/stats/stats.html'
+        templateUrl: '/Client/views/stats.html'
       });
 }]);

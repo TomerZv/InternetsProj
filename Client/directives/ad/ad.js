@@ -43,7 +43,7 @@ angular.module('management').directive('ad', function() {
                 };
 
                 modalService.showModal({}, modalOptions).then(function (result) {
-                    adsService.deleteAd(ad._id).then(function(results) {
+                    adsService.delete(ad._id).then(function(results) {
                         $scope.ad = null;
                     });
                 });

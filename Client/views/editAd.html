@@ -1,0 +1,54 @@
+<div ng-init="initialize()" >
+    <span class="col-md-2" style="padding-left:0; height:70vh">
+        <management-menu selected="selectedTab"></management-menu>
+    </span>
+    <span class="col-md-10" style="padding-left:0; margin-top:5px">
+        <header class="page-header" style="margin-bottom:5px;margin-top:10px">
+            <label style="font-size: 16px;">{{pageTitle}}</label>
+        </header>
+        <div id="formContainer">
+            <form name="adForm" novalidate class="css-form">
+                <div class="row">
+                    <template-container ad="ad" screens="screens"></template-container>
+                    <div class="form-group">
+                        <span ng-if="(screenChanged || adForm.$submitted)&&(!ad.screenIds || ad.screenIds.length == 0)" class="error glyphicon glyphicon glyphicon-asterisk" style="float:left;padding-right:5px;color:red"></span>
+                        <label>Screens:</label>
+                        <label ng-repeat="screen in screens" class="checkbox-inline">
+                            <input type="checkbox" checklist-model="ad.screenIds" checklist-value="screen" ng-change="screenWasChanged()"/>{{::screen}}
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="durationInput">Duration</label>
+                        <span ng-if="((adForm.$submitted || adForm.durationInput.$touched) && (adForm.durationInput.$error.required || adForm.durationInput.$error.min))"
+                              class="error glyphicon glyphicon glyphicon-asterisk" style="float:left;padding-right:5px;color:red"></span>
+                        <input type="number" id="durationInput" class="form-control" placeholder="Seconds" ng-model="ad.duration" style="width:150px" name="durationInput" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>City: </label>
+                        <span ng-repeat="city in cities" style="padding-right:5px;">
+                            <input type="radio" ng-model="selectedCity" name="city" value="city">{{::city}}
+                        </span></br></br>
+                        <div class="form-group">
+                            <label>Latitude</label>
+                            <input type="number" id="latitudeInput" class="form-control" placeholder="Latitude" ng-model="latitude" name="latitudeInput" required></br>
+                            <label>Longtitude</label>
+                            <input type="number" id="longtitudeInput" class="form-control" placeholder="Longtitude" ng-model="longtitude" name="longtitudeInput" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" style="padding:0">
+                        <label>Time frames</label>
+                        <div class="list-group">
+                            <div class="list-group-item" ng-repeat="timeFrame in ad.timeFrames">
+                                <time-frame index="{{$index}}" ad="ad" frame="timeFrame" delete-frame-function="deleteFrame"></time-frame>
+                            </div>
+                            <div class="list-group-item">
+                                <button type="button" class="btn btn-default btn-md" ng-click="addTimeFrame()">Add a time frame</button>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary col-md-12" ng-click="save()" value="Save Ad" />
+                </div>
+            </form>
+        </div>
+    </span>
+</div>

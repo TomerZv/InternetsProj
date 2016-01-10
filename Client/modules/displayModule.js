@@ -4,7 +4,7 @@ displayModule.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/display/:screenId', {
-        templateUrl: '/Client/modules/display/display.html',
+        templateUrl: '/Client/views/display.html',
         controller: 'displayAdsCtrl'
       });
 }]);
