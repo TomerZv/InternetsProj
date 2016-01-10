@@ -6,9 +6,9 @@ angular.module('management').controller('editAdCtrl', function($scope, $location
                     videos: [],
                     timeFrames: [{days: []}] };
     $scope.cities = ['Ashkelon','Tel Aviv','Jerusalem','Haifa','Eilat'];
-    $scope.selectedCity;
     $scope.latitude;
     $scope.longtitdue;
+    $scope.selectedCity;
     $scope.selectedTab = "New Ad";
     $scope.pageTitle = "New Ad";
 
@@ -81,6 +81,10 @@ angular.module('management').controller('editAdCtrl', function($scope, $location
                  (frame.modelEndDate > frame.modelStartDate) &&
                  (frame.modelTo > frame.modelFrom))
     };
+
+    $scope.validateGeolocation = function(){
+        return (selectedCity && longtitude && latitude);
+    };
     
     $scope.save = function() {
         // No errors on the form, all the ad aspects are initialized and no dates problems.
@@ -96,6 +100,10 @@ angular.module('management').controller('editAdCtrl', function($scope, $location
                 var image = $scope.ad.images[imageIndex];
                 $scope.ad.images[imageIndex] = (image.name) ? './images/' + image.name : image;
             }
+
+            $scope.ad.location = $scope.selectedCity;
+            $scope.ad.latitude = $scope.latitude;
+            $scope.ad.longtitude = $scope.longtitude;
 
             if ($scope.ad._id) {
                 adsService.update($scope.ad);

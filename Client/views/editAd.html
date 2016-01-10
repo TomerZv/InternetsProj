@@ -24,13 +24,16 @@
                         <input type="number" id="durationInput" class="form-control" placeholder="Seconds" ng-model="ad.duration" style="width:150px" name="durationInput" min="1" required>
                     </div>
                     <div class="form-group">
+                        <span ng-if="(adForm.$submitted)&&(!selectedCity)" class="error glyphicon glyphicon glyphicon-asterisk" style="float:left;padding-right:5px;color:red"></span>
                         <label>City: </label>
                         <span ng-repeat="city in cities" style="padding-right:5px;">
-                            <input type="radio" ng-model="selectedCity" name="city" value="city">{{::city}}
+                            <input type="radio" data-ng-model="$parent.selectedCity" name="city" value="{{::city}}" required>{{::city}}
                         </span></br></br>
                         <div class="form-group">
+                            <span ng-if="(adForm.$submitted || adForm.latitudeInput.$touched)&&(adForm.latitudeInput.$error.required)" class="error glyphicon glyphicon glyphicon-asterisk" style="float:left;padding-right:5px;color:red"></span>
                             <label>Latitude</label>
                             <input type="number" id="latitudeInput" class="form-control" placeholder="Latitude" ng-model="latitude" name="latitudeInput" required></br>
+                            <span ng-if="(adForm.$submitted || adForm.longtitudeInput.$touched)&&(adForm.longtitudeInput.$error.required)" class="error glyphicon glyphicon glyphicon-asterisk" style="float:left;padding-right:5px;color:red"></span>
                             <label>Longtitude</label>
                             <input type="number" id="longtitudeInput" class="form-control" placeholder="Longtitude" ng-model="longtitude" name="longtitudeInput" required>
                         </div>
