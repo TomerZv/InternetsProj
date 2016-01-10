@@ -3,7 +3,7 @@
       "textLines" : ['We have nice clothes', 'buy it as soon as possible'
                    , 'one plus one free', 'big sale today', 'fox kids is the best'],
       "images" : [],
-      "templateUrl" : './templateA.html',
+      "templateUrl" : './Client/views/Templates/templateA.html',
       "duration" :2600,
       "timeFrames" : [
           { 
@@ -32,7 +32,7 @@
                   'just from fun', 'this is a message for you',
                   'it great', 'our store'],
       "images" : ['./images/sea.jpg'],
-     "templateUrl" : './templateB.html',
+     "templateUrl" : './Client/views/Templates/templateB.html',
       "duration" : 30,
       "timeFrames" : [
           { 
@@ -44,15 +44,15 @@
           }
       ],
       "screenIds" : [1,3],
-      "location" : "Tel-Aviv",
-      "latitude" : 31.769039,
-      "longitude" : 35.216331
+      "location" : "Tel Aviv",
+      "latitude" : 32.0855,
+      "longitude" : 34.7895
   }, {
      "title" : "Cellio",
      "textLines" : ['welcome to cellio'],
       "images" : [],
       "videos" : ['http://media.w3.org/2010/05/sintel/trailer.mp4'],
-      "templateUrl"  : './templateC.html',
+      "templateUrl"  : './Client/views/Templates/templateC.html',
       "duration" : 20,
      "timeFrames" : [
           { 
@@ -63,12 +63,15 @@
               "to" : "10:00 PM"
           }
       ],
-      "screenIds" : [2,3]
+      "screenIds" : [2,3],
+      "location" : "Ashkelon",
+      "latitude" : 31.6667,
+      "longitude" : 34.5697
   }, {
       "title" : "Renuar",
       "textLines" : ['we have good things for you', 'choose us'],
       "images" : [],
-       "templateUrl" : './templateA.html',
+       "templateUrl" : './Client/views/Templates/templateA.html',
       "duration" : 20,
       "timeFrames" : [
           { 
@@ -88,7 +91,7 @@
       "textLines" : ['dont buy here', 'we are expensive',
                   'sorry for that'],
        "images": ['./images/catedral.jpg', './images/animal.jpg'],
-      "templateUrl" : './templateB.html',
+      "templateUrl" : './Client/views/Templates/templateB.html',
       "duration" : 30,
       "timeFrames" : [
           { 

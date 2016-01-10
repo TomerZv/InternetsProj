@@ -26,10 +26,10 @@ angular.module('management').service('modalService', ['$modal',
             var tempModalDefaults = {};
             var tempModalOptions = {};
 
-            //Map angular-ui modal custom defaults to modal defaults defined in service
+            //map angular-ui modal custom defaults to modal defaults defined in service
             angular.extend(tempModalDefaults, modalDefaults, customModalDefaults);
 
-            //Map modal.html $scope custom properties to defaults defined in service
+            //map modal.html $scope custom properties to defaults defined in service
             angular.extend(tempModalOptions, modalOptions, customModalOptions);
 
             if (!tempModalDefaults.controller) {

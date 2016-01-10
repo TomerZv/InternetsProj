@@ -33,31 +33,24 @@ app.get("/", function(req, res){
     res.sendFile(__dirname + "/index.html");
 });
 
-app.get("/timePerAd", function(req, res){
+app.get("/countAdsByLocation", function(req, res){
     mongoDB.connect(mongoUrl, function(err, db) {
         assert.equal(null, err);
-        
-        db.collection('stats').aggregate(
-           [
-              {
-                $group : {
-                   _id : {id : "$adId", title : "$adTitle"},
-                   duration: { $sum: "$duration" }
-                }
-              }
-           ]
-        ).toArray(function(err, stats) {
-            assert.equal(null, err);
-             var sample = [];
-            stats.forEach(function(item) { 
-                sample.push({'letter' : item._id.title, 'frequency' : item.duration*1.0/60});
-            });
-            res.json(sample);
-            db.close();
-        });
-   });
-});
 
+        db.collection('ads').aggregate(
+            [
+                {
+                    $group : {
+                        _id : { location: "$location" },
+                        count: { $sum: 1 }
+                    }
+                }
+            ], function(err, result){
+                res.json(result);
+                db.close();
+            });
+    });
+});
 app.get("/timeUtilizationPerDay", function(req, res){
     mongoDB.connect(mongoUrl, function(err, db) {
         assert.equal(null, err);
