@@ -1,0 +1,10 @@
+    <div class="form-group" style="background-color: #cdccd0;border-color: #778899;">
+        <label>Template:</label>
+        <div class="btn-group" role="group">
+            <button ng-repeat="screen in screens track by $index" ng-click="ad.templateId = screens[$index]"
+                    class="btn btn-default" ng-class="{ active : ad.templateId == screens[$index]}">{{::$index + 1}}</button>
+        </div>
+    </div>
+    <div>
+        <ad-template ad="ad"></ad-template>
+    </div>

@@ -1,5 +1,5 @@
-<div class="panel panel-primary col-md-12" ng-if="ad" ng-click="clickAd()" style="padding-left:0px; padding-right:0px; border-color: rgba(0, 0, 0, 0.71);" title="Click to view advertisement details.">
-    <div class="panel-heading" style="background-image:none; background-color:#777; border-bottom:0px;">{{ ::ad.title }}
+<div class="panel panel-primary col-md-12 ad" ng-if="ad" ng-click="clickAd()" title="Click to view advertisement details.">
+    <div class="panel-heading adv-header">{{ ::ad.title }}
         <div class="navbar-right" style="padding-right:10px">
             <button type="button" class="btn btn-default btn-xs" ng-click="edit(ad)">
                 <span class="glyphicon glyphicon-new-window"></span>

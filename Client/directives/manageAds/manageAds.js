@@ -10,7 +10,7 @@ angular.module('management').directive('manageAds', function() {
             $scope.ads = [];
 
             $scope.loadAds = function() {
-                adsService.getAds().then(function(results) {
+                adsService.getAll().then(function(results) {
                     $scope.ads = results.data;
                 });
             };
