@@ -55,7 +55,7 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
         $.each(ads, function(index, ad) {
             if (isInTimeFrame(ad.timeFrames)) {
                 
-                $( "#result" ).load('./view/Templates/' + ad.templateId + '.html', function() {
+                $( "#result" ).load('./views/Templates/' + ad.templateId + '.html', function() {
                     
                     $( "#title" ).html(ad.title);
                     $( "#location" ).html('(' + ad.location + ')');
