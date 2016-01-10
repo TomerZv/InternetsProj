@@ -22,6 +22,9 @@ angular.module('management').controller('editAdCtrl', function($scope, $location
                 $scope.ad.timeFrames.forEach(function(timeFrame) {
                     initializeFrame(timeFrame);
                 });
+                $scope.longitude = $scope.ad.longitude;
+                $scope.latitude = $scope.ad.latitude;
+                $scope.selectedCity = $scope.ad.location;
             });
         }
      };
@@ -103,7 +106,7 @@ angular.module('management').controller('editAdCtrl', function($scope, $location
 
             $scope.ad.location = $scope.selectedCity;
             $scope.ad.latitude = $scope.latitude;
-            $scope.ad.longtitude = $scope.longtitude;
+            $scope.ad.longitude = $scope.longitude;
 
             if ($scope.ad._id) {
                 adsService.update($scope.ad);
