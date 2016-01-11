@@ -1,2 +1,6 @@
-To run this exercise just run "RunThis.bat" in ADMINISTRATOR mode 
-and than you can change the screen number at the url (range 1 - 3)
+Hi
+
+To run this module you need to mongoDb and nodejs installed.
+please review RunProgram.bat and verify the path of node and mongo execution files
+after you run the bat file all chrome tabs will be closed.
+
