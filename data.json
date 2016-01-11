@@ -31,7 +31,7 @@
                    'some more test', 'some text',
                   'just from fun', 'this is a message for you',
                   'it great', 'our store'],
-      "images" : ['/Client/images/Castro.jpeg'],
+      "images" : ['/Client/images/Castro.jpg'],
      "templateId" : 2,
       "duration" : 30,
       "timeFrames" : [

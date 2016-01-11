@@ -1,4 +1,4 @@
-angular.module('management').controller('editAdCtrl', function($scope, $location, adsService, $window, $routeParams) {
+angular.module('management').controller('editAdCtrl', function($scope, $location, adsService, $window, $routeParams, $http) {
     $scope.screens = [1,2,3];
     $scope.ad = {   templateId: 1,
                     textLines: {},
@@ -22,6 +22,9 @@ angular.module('management').controller('editAdCtrl', function($scope, $location
                 $scope.ad.timeFrames.forEach(function(timeFrame) {
                     initializeFrame(timeFrame);
                 });
+                for (var index = 0; index < $scope.ad.images.length; index++){
+                    $scope.ad.images[index] = $scope.ad.images[index].replace("/Client/images/", "").replace(".jpg", "");
+                }
                 $scope.longitude = $scope.ad.longitude;
                 $scope.latitude = $scope.ad.latitude;
                 $scope.selectedCity = $scope.ad.location;
@@ -100,8 +103,7 @@ angular.module('management').controller('editAdCtrl', function($scope, $location
             });
 
             for (var imageIndex = 0; imageIndex < $scope.ad.images.length; imageIndex++) {
-                var image = $scope.ad.images[imageIndex];
-                $scope.ad.images[imageIndex] = (image.name) ? './images/' + image.name : image;
+                $scope.ad.images[imageIndex] = '/Client/images/' + $scope.ad.images[imageIndex] + '.jpg';
             }
 
             $scope.ad.location = $scope.selectedCity;
@@ -113,7 +115,6 @@ angular.module('management').controller('editAdCtrl', function($scope, $location
             } else {
                 adsService.insert($scope.ad);
             }
-
             $location.path("/management");
         }
         else{

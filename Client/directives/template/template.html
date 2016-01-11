@@ -18,12 +18,12 @@
     <div class="form-group" ng-if="templates[ad.templateId - 1].images != 0">
         <label>Images</label>
         <div ng-repeat="i in getImagesNumber() track by $index">
-            <file-field class="btn" ng-model="images[$index]"
-                        ng-class="{'btn-success':uploadFile}"
-                        preview="previewImage">Image number {{($index + 1)}}
-            </file-field>
-            <img style="max-height:100px;" ng-src="{{previewImage}}">
+            <input type="text" class="form-control"
+                   placeholder="{{'Image name number ' + ($index + 1)}}"
+                   ng-model="ad.images[$index]"></br>
+            <img ng-if="(ad.images[$index])" style="max-height:100px; padding-bottom:10px" ng-src="{{'/Client/images/' + ad.images[$index] + '.jpg'}}">
         </div>
+    </div>
     </div>
     <div class="form-group" ng-if="templates[ad.templateId - 1].videos != 0">
         <label>Videos</label>
