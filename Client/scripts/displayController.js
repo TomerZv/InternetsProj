@@ -51,10 +51,10 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
 
     function displayAds() {
         var chosenAd;
-
+        console.log("start display");
         $.each(ads, function(index, ad) {
             if (isInTimeFrame(ad.timeFrames)) {
-                console.log('load ' + ad.title);
+                console.log('found load!');
                 $( "#result" ).load('./client/views/Templates/' + ad.templateId + '.html', function() {
                     
                     $( "#title" ).html(ad.title);
@@ -84,10 +84,10 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
                     $.get(url, function(data, status){
                         $("#temperature").html(Math.round(data.list[0].main.temp));
                     });
-                    console.log('finish load ' + ad.title);
+
                 });
 
-                console.log('set chosen ' + ad.title);
+                console.log('finish load');
                 chosenAd = ad;
 
                 // Move the chosen ad to the end of the ads array.
@@ -96,11 +96,11 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
                 return false;
             }
         });
-        console.log('check exists');
+        console.log('after each loop');
         if (chosenAd) {
             return (chosenAd.duration);
         } else {
-            $( "#result" ).html('<div style="text-align:center;">No ads to display :)</div>');
+            $( "#result" ).html('<div style="text-align:center; font-size: x-large; margin-top: 30px;">Nothing to show</div>');
             return 10; // Try to load ads again in 10 seconds
         }
     }
