@@ -4,7 +4,7 @@
                    , 'one plus one free', 'big sale today', 'fox kids is the best'],
       "images" : [],
       "templateId" : 1,
-      "duration" :2600,
+      "duration" :12,
       "timeFrames" : [
           { 
               "startDate" : "1/1/16",
@@ -31,7 +31,7 @@
                    'some more test', 'some text',
                   'just from fun', 'this is a message for you',
                   'it great', 'our store'],
-      "images" : ['./images/sea.jpg'],
+      "images" : ['/Client/images/Castro.jpeg'],
      "templateId" : 2,
       "duration" : 30,
       "timeFrames" : [
@@ -51,7 +51,7 @@
      "title" : "Cellio",
      "textLines" : ['welcome to cellio'],
       "images" : [],
-      "videos" : ['http://media.w3.org/2010/05/sintel/trailer.mp4'],
+      "videos" : ['http://techslides.com/demos/sample-videos/small.mp4'],
       "templateId"  : 3,
       "duration" : 20,
      "timeFrames" : [
@@ -90,7 +90,7 @@
      "title" : "bilaboong",
       "textLines" : ['dont buy here', 'we are expensive',
                   'sorry for that'],
-       "images": ['./images/catedral.jpg', './images/animal.jpg'],
+       "images": ['Client/images/Billabong.jpg', 'Client/images/1.jpg'],
       "templateId" : 2,
       "duration" : 30,
       "timeFrames" : [
