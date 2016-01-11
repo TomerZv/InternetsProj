@@ -12,7 +12,7 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
             ads.push(data);
         }
     });
-    
+
     socket.on('ad:updated', function (data) {
         console.log(data);
         // Find the updated ad in the screen's ads
@@ -54,7 +54,7 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
 
         $.each(ads, function(index, ad) {
             if (isInTimeFrame(ad.timeFrames)) {
-                
+                console.log('load ' + ad.title);
                 $( "#result" ).load('./client/views/Templates/' + ad.templateId + '.html', function() {
                     
                     $( "#title" ).html(ad.title);
@@ -84,9 +84,10 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
                     $.get(url, function(data, status){
                         $("#temperature").html(Math.round(data.list[0].main.temp));
                     });
-
+                    console.log('finish load ' + ad.title);
                 });
 
+                console.log('set chosen ' + ad.title);
                 chosenAd = ad;
 
                 // Move the chosen ad to the end of the ads array.
@@ -95,7 +96,7 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
                 return false;
             }
         });
-        
+        console.log('check exists');
         if (chosenAd) {
             return (chosenAd.duration);
         } else {
