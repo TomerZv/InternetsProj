@@ -69,8 +69,6 @@ app.post("/ads/", function(req, res){
         var ad = req.body;
         console.log(ad);
         db.collection('ads').insertOne(ad, function(err){
-          console.log(err);
-          console.log("Ad Record added as " + ad._id);
           res.json(ad._id);
           io.sockets.emit('ad:added', ad);
           db.close();
@@ -85,8 +83,6 @@ app.put("/ads/", function(req, res){
         ad._id = ObjectId(ad._id);
         console.log(ad);
         db.collection('ads').updateOne({ _id : ObjectId(ad._id) }, ad, function(err){
-          console.log(err);
-          console.log("Ad Record updated as " + ad._id);
           res.json({ "success" : true });
           io.sockets.emit('ad:updated', ad);
           db.close();
@@ -100,8 +96,6 @@ app.delete("/ads/:adId", function(req, res){
     mongoDB.connect(mongoUrl, function(err, db) {
         assert.equal(null, err);
         db.collection('ads').removeOne({ _id : ObjectId(adIdToDelete) }, function(err){
-          console.log(err);
-          console.log("Ad Record delete " + adIdToDelete);
           res.json({ "success" : true });
           db.close();
         });
@@ -139,7 +133,6 @@ app.get("/screen/:screenId", function(req, res){
 io.sockets.on('connection', function (socket) {
 
     socket.on('register:screen', function(data){
-        console.log("Screen Registered: " + data.screenId);
         // we store the screen id in the socket session for this client
         socket.screenId = data.screenId;
         // add the screenId to the global list
@@ -147,9 +140,7 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('disconnect', function(){
-        console.log("Screen UnRegistered: " + socket.screenId);
         // remove the screenId from global screens list
         delete screens[socket.screenId];
     });
-
 });
