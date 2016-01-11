@@ -10,8 +10,8 @@ angular.module('management').directive('ad', function() {
             var printArray = function(array) {
                 var output = "";
 
-                for (var index = 0; index < ad.screenIds.length; index++){
-                    output += ad.screenIds[index] + ", ";
+                for (var index = 0; index < array.length; index++){
+                    output += array[index] + ", ";
                 }
 
                 return output.substring(0, output.length - 2);
@@ -26,8 +26,8 @@ angular.module('management').directive('ad', function() {
                 return printArray(ad.screenIds);
             }
 
-            $scope.printDays = function(){
-                return printArray(ad.days);
+            $scope.printDays = function(timeFrame){
+                return printArray(timeFrame.days);
             }
 
             $scope.edit = function(ad) {

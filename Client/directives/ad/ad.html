@@ -24,7 +24,7 @@
                 <div class="field-description">Dates:</div>
                 <div ng-repeat="timeFrame in ad.timeFrames" ng-class="{notLast: !$last}" style="padding-left:10px">
                     <div>{{::timeFrame.startDate}} - {{::timeFrame.endDate}}</div>
-                    <div>Days: {{::printDays()}}</div>
+                    <div>Days: {{::printDays(timeFrame)}}</div>
                     <div>{{::timeFrame.from}} to {{::timeFrame.to}}</div>
                 </div>
         </span>
