@@ -43,7 +43,7 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
     }
 
     $scope.loadAds = function() {
-        $http.get("/ads/?screenId=" + $routeParams.screenId).success(function(data) {
+        $http.get("/display/" + $routeParams.screenId).success(function(data) {
           ads = data;
           scheduleAds();
         });
@@ -113,10 +113,14 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
         var isIn = false;
         var today = new Date();
         $.each(timeFrames, function(index, frame) {
-            if (today >= Date.parse(frame.startDate) && 
-                today <= Date.parse(frame.endDate) &&
-                today.getTime() > parseTime(frame.from).getTime() &&  
-                today.getTime() < parseTime(frame.to).getTime() && 
+            var from = new Date();
+            from.setHours(parseInt(frame.from.substr(0,2)), parseInt(frame.from.substr(3,5)), 0, 0);
+            var to = new Date();
+            to.setHours(parseInt(frame.to.substr(0,2)), parseInt(frame.to.substr(3,5)), 0, 0);
+            if (today >= new Date(frame.startDate) &&
+                today <= new Date(frame.endDate) &&
+                today.getTime() > from.getTime() &&
+                today.getTime() < to.getTime() &&
                 frame.days.indexOf(today.getDay() + 1) > -1) {
                     isIn = true;
             }
@@ -124,14 +128,4 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
 
         return isIn;
     }
-
-    function parseTime(timeString) {    
-      if (timeString == '') return null;
-      var d = new Date();
-      var time = timeString.match(/(\d+)(:(\d\d))?\s*(p?)/i);
-      d.setHours( parseInt(time[1],10) + ( ( parseInt(time[1],10) < 12 && time[4] ) ? 12 : 0) );
-      d.setMinutes( parseInt(time[3],10) || 0 );
-      d.setSeconds(0, 0);
-      return d;
-    } 
 });
