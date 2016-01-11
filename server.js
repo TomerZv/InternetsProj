@@ -51,30 +51,6 @@ app.get("/countAdsByLocation", function(req, res){
             });
     });
 });
-app.get("/timeUtilizationPerDay", function(req, res){
-    mongoDB.connect(mongoUrl, function(err, db) {
-        assert.equal(null, err);
-        
-        db.collection('stats').aggregate(
-           [
-              {
-                $group : {
-                   _id : { day: { $dayOfMonth: "$shownAt" } },
-                   duration: { $sum: "$duration" }
-                }
-              }
-           ]
-        ).toArray(function(err, stats) {
-            assert.equal(null, err);
-             var sample = [];
-            stats.forEach(function(item) { 
-                sample.push({'letter' : item._id.day, 'frequency' : item.duration*1.0/60/60/24});
-            });
-            res.json(sample);
-            db.close();
-        });
-   });
-});
 
 app.get("/ads/", function(req, res){
     mongoDB.connect(mongoUrl, function(err, db) {
@@ -169,21 +145,6 @@ io.sockets.on('connection', function (socket) {
         // add the screenId to the global list
         screens[data.screenId] = data.screenId;
     });
-
-    socket.on('ad:shown', function(data) {
-        mongoDB.connect(mongoUrl, function(err, db) {
-            assert.equal(null, err);
-            var stat = data;
-            console.log(stat);
-            stat.shownAt = new Date();
-            db.collection('stats').insertOne(stat, function(err){
-                console.log(err);
-                console.log("Statistics Record added as " + stat._id);
-                db.close();
-            });
-        });
-    });
-
 
     socket.on('disconnect', function(){
         console.log("Screen UnRegistered: " + socket.screenId);

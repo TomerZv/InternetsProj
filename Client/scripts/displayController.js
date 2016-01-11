@@ -88,12 +88,7 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
                 });
 
                 chosenAd = ad;
-                
-                var stat = { screenId: $routeParams.screenId, duration : chosenAd.duration,
-                                        shownAt : new Date(), adId : chosenAd._id, adTitle : chosenAd.title };
-                console.log(stat);
-                socket.emit('ad:shown', stat);
-                
+
                 // Move the chosen ad to the end of the ads array.
                 // Prevents showing the same ad twice in a row
                 ads.push(ads.splice(index, 1)[0]);
