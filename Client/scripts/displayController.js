@@ -1,6 +1,6 @@
 displayModule.controller('displayAdsCtrl', function($scope, $location, $routeParams, socket, $http) {
     var ads = [];
-    
+
     socket.on('connect', function (data) {
         socket.emit('register:screen', { screenId: $routeParams.screenId });
     });
@@ -44,6 +44,11 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
 
     $scope.loadAds = function() {
         $http.get("/screen/" + $routeParams.screenId).success(function(data) {
+            var id = window.setTimeout(function() {}, 0);
+
+            while (id--) {
+                window.clearTimeout(id);
+            }
           ads = data;
           scheduleAds();
         });
