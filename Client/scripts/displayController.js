@@ -43,7 +43,7 @@ displayModule.controller('displayAdsCtrl', function($scope, $location, $routePar
     }
 
     $scope.loadAds = function() {
-        $http.get("/display/" + $routeParams.screenId).success(function(data) {
+        $http.get("/screen/" + $routeParams.screenId).success(function(data) {
           ads = data;
           scheduleAds();
         });

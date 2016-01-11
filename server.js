@@ -147,12 +147,12 @@ app.get("/ads/:adId", function(req, res){
     });
 });
 
-app.get("/display/:screenId", function(req, res){
+app.get("/screen/:screenId", function(req, res){
     var screenId = req.params.screenId;
     mongoDB.connect(mongoUrl, function(err,db){
         assert.equal(null, err);
 
-        db.collection('ads').find({screenIds: {$in: [screenId]}}).toArray(function(err, docs) {
+        db.collection('ads').find({screenIds: parseInt(screenId)}).toArray(function(err, docs) {
             assert.equal(null, err);
             res.json(docs);
             db.close();
