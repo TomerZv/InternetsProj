@@ -1,5 +1,7 @@
 <div id="adContainer" class="row" style="padding: 20px;">
-    <div ng-repeat="ad in ads | adFilter: filters">
+    <div ng-repeat="ad in filteredAds = (ads | adFilter: filters)">
         <div class="row"><ad ad="ad"></ad></div>
     </div>
+    <div ng-if="ads.length == 0">No ads exist.</div>
+    <div ng-if="ads.length != 0 && filteredAds.length == 0">No ads found. Try changing your search criteria.</div>
 </div>

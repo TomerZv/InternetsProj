@@ -26,7 +26,7 @@ angular.module('management').filter('adFilter', function() {
 
     var filteredAds = ads.clone();
 
-    // Check wether a filter is needed
+    // Check whether a filter is needed
     if ((filter.days.length != 0) || (filter.screenIds.length != 0) || (filter.text)){
       angular.forEach(ads, function(ad){
         var isFound = true;
